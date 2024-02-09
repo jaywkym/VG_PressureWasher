@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
             {
                 playerRigidbody.AddForce(new Vector2(0, jetpackForce));
             }
+
         }
 
         // Update is called once per frame
