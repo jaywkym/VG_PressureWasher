@@ -27,9 +27,13 @@ public class Player : MonoBehaviour
 
         // Update is called once per frame
         void Update()
-    {
+    { 
+        //MOVE
+        if(Input.GetKey(KeyCode.D)){
+            playerRigidbody.AddForce(Vector2.right * 18f * Time.deltaTime, ForceMode2D.Impulse);
+        }
         //CLEAN!!!!
-        if(Input.GetKey(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space)){
             playerRigidbody.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
         }
         
