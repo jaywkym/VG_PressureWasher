@@ -9,10 +9,13 @@ public class Player : MonoBehaviour
         public float jetpackForce = 75.0f;
         private Rigidbody2D playerRigidbody;
         public float speed;
+        public int playerScore;
+        public float start;
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        start = transform.position.x;
     }
         //need fixedupate with update bc they update at diff intervals
         void FixedUpdate()
@@ -36,7 +39,13 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)){
             playerRigidbody.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
         }
+
         
+        addScore();
+    }
+
+    void addScore(){
+        playerScore = (int)(transform.position.x - start);
     }
 }
 }
