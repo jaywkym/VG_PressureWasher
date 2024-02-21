@@ -9,12 +9,6 @@ public class Player : MonoBehaviour
         public float jetpackForce = 75.0f;
         private Rigidbody2D playerRigidbody;
         public float speed;
-<<<<<<< Updated upstream
-=======
-        public int playerScore;
-        public float start;
-        public float fowardMovementSpeed = 3.0f;
->>>>>>> Stashed changes
 
     void Start()
     {
@@ -28,9 +22,6 @@ public class Player : MonoBehaviour
             {
                 playerRigidbody.AddForce(new Vector2(0, jetpackForce));
             }
-            Vector2 newVelocity = playerRigidbody.velocity;
-            newVelocity.x = fowardMovementSpeed;
-            playerRigidbody.velocity = newVelocity;
 
         }
 
