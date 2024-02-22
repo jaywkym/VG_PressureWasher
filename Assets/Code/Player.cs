@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
         public float jetpackForce = 75.0f;
         private Rigidbody2D playerRigidbody;
         public float speed;
+        public int playerScore;
+        public float start;
+        public float fowardMovementSpeed = 3.0f;
 
     void Start()
     {
