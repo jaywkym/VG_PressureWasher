@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
             {
                 playerRigidbody.AddForce(new Vector2(0, jetpackForce));
             }
+            Vector2 newVelocity = playerRigidbody.velocity;
+            newVelocity.x = fowardMovementSpeed;
+            playerRigidbody.velocity = newVelocity;
 
         }
 
