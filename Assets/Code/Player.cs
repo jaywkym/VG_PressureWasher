@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PressureWasher{
 public class Player : MonoBehaviour
@@ -44,6 +45,38 @@ public class Player : MonoBehaviour
         }
         
     }
-}
+
+        //  COLLECT COINS
+
+        private uint coins = 0; //store coin count
+        public Text coinsCollectedLabel; //text label for coin score
+
+        void collect(Collider2D coinCollider)
+        {
+            coins++;
+            coinsCollectedLabel.text = coins.ToString();
+            Destroy(coinCollider.gameObject);
+        }
+
+
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (collider.gameObject.CompareTag("coin"))
+            {
+                collect(collider);
+            }
+
+
+
+            //FOR other objects later like power ups, etc
+            //else if
+            //{
+            //    HitByLaser(collider);
+            //}
+
+        }
+
+
+    }
 }
 
