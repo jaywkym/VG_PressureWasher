@@ -5850,7 +5850,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1604498801
+  m_SortingLayerID: 1349724393
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &474498339
@@ -6445,7 +6445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875655670959902855, guid: 65aa9b24f76d745bd893170dddb4e660, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9305706
+      value: 5.19
       objectReference: {fileID: 0}
     - target: {fileID: 2875655670959902855, guid: 65aa9b24f76d745bd893170dddb4e660, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6794,7 +6794,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1016757082
 RectTransform:
@@ -7734,6 +7734,14 @@ PrefabInstance:
     - target: {fileID: 1746667077400698678, guid: 8b9855eacdb794c82b40c976ce86f362, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042886965734018497, guid: 8b9855eacdb794c82b40c976ce86f362, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042886965734018497, guid: 8b9855eacdb794c82b40c976ce86f362, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.79
       objectReference: {fileID: 0}
     - target: {fileID: 2111534160231584369, guid: 8b9855eacdb794c82b40c976ce86f362, type: 3}
       propertyPath: m_Layer
