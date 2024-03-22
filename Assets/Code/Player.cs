@@ -13,11 +13,21 @@ public class Player : MonoBehaviour
         public int playerScore;
         public float start;
         public float fowardMovementSpeed = 3.0f;
+        private bool isDead = false;
+        public Transform groundCheckTransform;
+        private bool isGrounded;
+        public LayerMask groundCheckLayerMask;
+        //private Animator mouseAnimator;
+        public ParticleSystem jetpack;
+        public AudioClip coinCollectSound;
+        public AudioSource jetpackAudio;
 
-    void Start()
-    {
+
+        void Start(){
         playerRigidbody = GetComponent<Rigidbody2D>();
-    }
+        //mouseAnimator = GetComponent<Animator>();
+
+        }
         //need fixedupate with update bc they update at diff intervals
         void FixedUpdate()
         {
@@ -26,9 +36,18 @@ public class Player : MonoBehaviour
             {
                 playerRigidbody.AddForce(new Vector2(0, jetpackForce));
             }
-            Vector2 newVelocity = playerRigidbody.velocity;
-            newVelocity.x = fowardMovementSpeed;
-            playerRigidbody.velocity = newVelocity;
+  
+            if (!isDead)
+            {
+                Vector2 newVelocity = playerRigidbody.velocity;
+                newVelocity.x = fowardMovementSpeed;
+                playerRigidbody.velocity = newVelocity;
+            }
+
+            UpdateGroundedStatus();
+            AdjustJetpack(jetpackActive);
+            AdjustFootstepsAndJetpackSound(jetpackActive);
+
 
         }
 
@@ -59,22 +78,73 @@ public class Player : MonoBehaviour
         }
 
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.gameObject.CompareTag("coin"))
             {
                 collect(collider);
+                AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
+
             }
 
 
 
-            //FOR other objects later like power ups, etc
-            //else if
-            //{
-            //    HitByLaser(collider);
-            //}
+            HitByLaser(collider);
+            
 
         }
+
+
+        void HitByLaser(Collider2D laserCollider)
+        {
+            isDead = true;
+        }
+
+        void UpdateGroundedStatus()
+        {
+            //1
+            isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.1f, groundCheckLayerMask);
+            //2
+            //mouseAnimator.SetBool("isGrounded", isGrounded);
+        }
+
+        void AdjustJetpack(bool jetpackActive)
+        {
+            var jetpackEmission = jetpack.emission;
+            jetpackEmission.enabled = !isGrounded;
+            if (jetpackActive)
+            {
+                jetpackEmission.rateOverTime = 300.0f;
+            }
+            else
+            {
+                jetpackEmission.rateOverTime = 75.0f;
+            }
+        }
+
+        void HitByLaser()
+        {
+            if (!isDead)
+            {
+                //AudioSource laserZap = laserCollider.gameObject.GetComponent<AudioSource>();
+                //laserZap.Play();
+            }
+        }
+
+        void AdjustFootstepsAndJetpackSound(bool jetpackActive)
+        { 
+            jetpackAudio.enabled = !isDead && !isGrounded;
+            if (jetpackActive)
+            {
+                jetpackAudio.volume = 1.0f;
+            }
+            else
+            {
+                jetpackAudio.volume = 0.5f;
+            }
+        }
+
+
 
 
     }
