@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace PressureWasher{
 public class CollectCoins : MonoBehaviour
 {
 
@@ -21,3 +22,5 @@ public class CollectCoins : MonoBehaviour
 
     //}
 }
+}
+

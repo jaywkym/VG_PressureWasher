@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace PressureWasher{
 public class GenerateCoins : MonoBehaviour
 {
     //instance variables
@@ -97,4 +98,5 @@ public class GenerateCoins : MonoBehaviour
 
     }
 
+}
 }
