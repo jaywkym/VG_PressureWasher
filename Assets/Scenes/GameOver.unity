@@ -627,6 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalscore: {fileID: 0}
+  scoreNumber: 0
 --- !u!1 &1576450432
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalscore: {fileID: 0}
+  scoreNumber: 0
 --- !u!1 &1775230199
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +936,7 @@ GameObject:
   - component: {fileID: 1789490185}
   - component: {fileID: 1789490187}
   m_Layer: 5
-  m_Name: Text (TMP) - FinalScore
+  m_Name: Text (TMP) - finalscore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,6 +1071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalscore: {fileID: 1789490185}
+  scoreNumber: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
