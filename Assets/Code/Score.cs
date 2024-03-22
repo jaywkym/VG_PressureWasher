@@ -7,10 +7,17 @@ namespace PressureWasher
 {
     public class Score : MonoBehaviour
     {
+        public static Score instance;
         public Transform player;
         public Text scoreText;
         public float scoreNum;
         public float pointsPerSec = 20;
+
+        private void Awake(){
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
 
 
         // Update is called once per frame
