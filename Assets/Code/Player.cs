@@ -22,7 +22,15 @@ public class Player : MonoBehaviour
         public float maxObstacleDelay = 2f;
         public float minObstacleDelay = 0.5f;
 
-    void SpawnObstacle(){
+        public Transform groundCheckTransform;
+        private bool isGrounded;
+        public LayerMask groundCheckLayerMask;
+        private Animator mouseAnimator;
+
+        public ParticleSystem jetpack;
+
+
+        void SpawnObstacle(){
         float spawnXPosition = transform.position.x + 18f;
         float spawnYPosition = Random.Range(-4.5f, 4.5f);
         Vector2 spawnPosition = new Vector2(spawnXPosition, spawnYPosition);
@@ -45,9 +53,11 @@ public class Player : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         StartCoroutine("ObstacleSpawnTimer");
-    }
+        mouseAnimator = GetComponent<Animator>();
+
+        }
         //need fixedupate with update bc they update at diff intervals
-    void FixedUpdate()
+        void FixedUpdate()
     {
             bool jetpackActive = Input.GetButton("Fire1");
             if (jetpackActive)
@@ -58,7 +68,12 @@ public class Player : MonoBehaviour
             newVelocity.x = fowardMovementSpeed;
             playerRigidbody.velocity = newVelocity;
 
-    }
+            UpdateGroundedStatus();
+            AdjustJetpack(jetpackActive);
+
+
+
+        }
 
         // Update is called once per frame
         void Update()
@@ -98,6 +113,29 @@ public class Player : MonoBehaviour
                 collect(collider);
             }
         }
+
+        void UpdateGroundedStatus()
+        {
+            //1
+            isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.1f, groundCheckLayerMask);
+            //2
+            mouseAnimator.SetBool("isGrounded", isGrounded);
+        }
+
+        void AdjustJetpack(bool jetpackActive)
+        {
+            var jetpackEmission = jetpack.emission;
+            jetpackEmission.enabled = !isGrounded;
+            if (jetpackActive)
+            {
+                jetpackEmission.rateOverTime = 300.0f;
+            }
+            else
+            {
+                jetpackEmission.rateOverTime = 75.0f;
+            }
+        }
+
 
 
     }
