@@ -28,6 +28,12 @@ public class Player : MonoBehaviour
         private Animator mouseAnimator;
 
         public ParticleSystem jetpack;
+        private bool isDead = false;
+        public AudioClip coinCollectSound;
+
+        public AudioSource jetpackAudio;
+        public AudioSource footstepsAudio;
+
 
 
         void SpawnObstacle(){
@@ -60,16 +66,23 @@ public class Player : MonoBehaviour
         void FixedUpdate()
     {
             bool jetpackActive = Input.GetButton("Fire1");
+            jetpackActive = jetpackActive && !isDead;
+
             if (jetpackActive)
             {
                 playerRigidbody.AddForce(new Vector2(0, jetpackForce));
             }
-            Vector2 newVelocity = playerRigidbody.velocity;
-            newVelocity.x = fowardMovementSpeed;
-            playerRigidbody.velocity = newVelocity;
+
+            if (!isDead)
+            {
+                Vector2 newVelocity = playerRigidbody.velocity;
+                newVelocity.x = fowardMovementSpeed;
+                playerRigidbody.velocity = newVelocity;
+            }
 
             UpdateGroundedStatus();
             AdjustJetpack(jetpackActive);
+
 
 
 
@@ -101,6 +114,8 @@ public class Player : MonoBehaviour
         void collect(Collider2D coinCollider)
         {
             coins++;
+            AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
+
             coinsCollectedLabel.text = coins.ToString();
             Destroy(coinCollider.gameObject);
         }
@@ -112,6 +127,7 @@ public class Player : MonoBehaviour
             {
                 collect(collider);
             }
+            //HitByLaser(collider);
         }
 
         void UpdateGroundedStatus()
@@ -136,6 +152,24 @@ public class Player : MonoBehaviour
             }
         }
 
+        //void HitByLaser(Collider2D laserCollider)
+        //{
+        //    isDead = true;
+        //}
+
+        void AdjustFootstepsAndJetpackSound(bool jetpackActive)
+        {
+            footstepsAudio.enabled = !isDead && isGrounded;
+            jetpackAudio.enabled = !isDead && !isGrounded;
+            if (jetpackActive)
+            {
+                jetpackAudio.volume = 1.0f;
+            }
+            else
+            {
+                jetpackAudio.volume = 0.5f;
+            }
+        }
 
 
     }
