@@ -5364,7 +5364,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 31.618555, y: 1}
+  m_Size: {x: 100000000, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &569265301
 Transform:
@@ -5457,7 +5457,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614790215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+
   m_LocalPosition: {x: 8, y: -1.5, z: -0.0032066042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5795,6 +5796,26 @@ MonoBehaviour:
   playerScore: 0
   start: 0
   fowardMovementSpeed: 3
+  spawnPoints:
+  - {fileID: 127536546}
+  - {fileID: 1923820480}
+  - {fileID: 1100837166}
+  - {fileID: 1117303798}
+  - {fileID: 1608864808}
+  - {fileID: 1681582071}
+  - {fileID: 614790216}
+  - {fileID: 830839971}
+  - {fileID: 173462326}
+  - {fileID: 878680384}
+  obstaclePrefabs:
+  - {fileID: 6503590216815955032, guid: 825a4bfc0ba6c4dd3a31ad56e3932036, type: 3}
+  - {fileID: 8828913996833149961, guid: 65aa9b24f76d745bd893170dddb4e660, type: 3}
+  - {fileID: 7467084556427994242, guid: e0a5a3e496cfb485ab21850f8c0a3d91, type: 3}
+  - {fileID: 6636029349873337113, guid: ca8f9a85f859146908e97654dd35d1d8, type: 3}
+  timeElapsed: 0
+  obstacleDelay: 0
+  maxObstacleDelay: 2
+  minObstacleDelay: 0.5
   coinsCollectedLabel: {fileID: 1055826855}
 --- !u!60 &967008342
 PolygonCollider2D:
@@ -6098,17 +6119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97313b17223345cf9e1e28a6c247bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableObjects:
-  - {fileID: 8828913996833149961, guid: 65aa9b24f76d745bd893170dddb4e660, type: 3}
-  - {fileID: 6503590216815955032, guid: 825a4bfc0ba6c4dd3a31ad56e3932036, type: 3}
-  - {fileID: 6636029349873337113, guid: ca8f9a85f859146908e97654dd35d1d8, type: 3}
-  - {fileID: 7467084556427994242, guid: e0a5a3e496cfb485ab21850f8c0a3d91, type: 3}
-  - {fileID: 8002713436660493917, guid: cc7f540f342a24853865058d53852cb3, type: 3}
-  objects: []
-  objectsMinDistance: 5
-  objectsMaxDistance: 10
-  objectsMinY: -1.4
-  objectsMaxY: 1.4
 --- !u!1 &1016757081
 GameObject:
   m_ObjectHideFlags: 0
@@ -6606,7 +6616,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.229095, y: 1}
+  m_Size: {x: 10000000, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1664045987
 Transform:
