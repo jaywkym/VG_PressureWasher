@@ -6,11 +6,17 @@ using UnityEngine.UI;
 namespace PressureWasher{
 public class Player : MonoBehaviour
 {
+        public static Player instance;
+
         // Start is called before the first frame update
         public float jetpackForce = 50.0f;
         private Rigidbody2D playerRigidbody;
         public float speed;
-        public int playerScore;
+
+        public float playerScore;
+        //public Text scoreText;
+        //public float pointsPerSec = 20;
+
         public float start;
         public float fowardMovementSpeed = 3.0f;
 
@@ -29,8 +35,9 @@ public class Player : MonoBehaviour
 
         public ParticleSystem jetpack;
         private bool isDead = false;
-        public AudioClip coinCollectSound;
 
+        // Audio clips
+        public AudioClip coinCollectSound;
         public AudioSource jetpackAudio;
         public AudioSource footstepsAudio;
 
@@ -49,22 +56,23 @@ public class Player : MonoBehaviour
 
     IEnumerator ObstacleSpawnTimer(){
         yield return new WaitForSeconds(obstacleDelay);
-
         SpawnObstacle();
-
         StartCoroutine("ObstacleSpawnTimer");
     }
 
     void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody2D>();
+        instance = this;
+            //DontDestroyOnLoad(this.gameObject);
+
+            playerRigidbody = GetComponent<Rigidbody2D>();
         StartCoroutine("ObstacleSpawnTimer");
         mouseAnimator = GetComponent<Animator>();
 
         }
         //need fixedupate with update bc they update at diff intervals
         void FixedUpdate()
-    {
+        {
             bool jetpackActive = Input.GetButton("Fire1");
             jetpackActive = jetpackActive && !isDead;
 
@@ -82,34 +90,50 @@ public class Player : MonoBehaviour
 
             UpdateGroundedStatus();
             AdjustJetpack(jetpackActive);
-
-
-
-
         }
+
+        //playerScore
+        //scoreText
+
+
+        //// Update is called once per frame
+        //void Update()
+        //{
+        //    scoreNum += pointsPerSec * Time.deltaTime;
+        //    //Debug.Log(pointsPerSec * Time.deltaTime);
+        //    scoreText.text = "Score: " + scoreNum.ToString("0");
+        //}
 
         // Update is called once per frame
         void Update()
-    { 
-        timeElapsed += Time.deltaTime;
+        { 
+            timeElapsed += Time.deltaTime;
 
-        float decreaseDelayOverTime = maxObstacleDelay - ((maxObstacleDelay - minObstacleDelay) / 30f * timeElapsed);
-        obstacleDelay = Mathf.Clamp(decreaseDelayOverTime, minObstacleDelay, maxObstacleDelay);
+            float decreaseDelayOverTime = maxObstacleDelay - ((maxObstacleDelay - minObstacleDelay) / 30f * timeElapsed);
+            obstacleDelay = Mathf.Clamp(decreaseDelayOverTime, minObstacleDelay, maxObstacleDelay);
 
-        //MOVE
-        if(Input.GetKey(KeyCode.D)){
-            playerRigidbody.AddForce(Vector2.right * 18f * Time.deltaTime, ForceMode2D.Impulse);
+            //playerScore += pointsPerSec * Time.deltaTime;
+            ////Debug.Log(pointsPerSec * Time.deltaTime);
+            //scoreText.text = "Score: " + playerScore.ToString("0");
+
+            //MOVE
+            if (Input.GetKey(KeyCode.D))
+            {
+                playerRigidbody.AddForce(Vector2.right * 18f * Time.deltaTime, ForceMode2D.Impulse);
+            }
+            //CLEAN!!!!
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                playerRigidbody.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
+            }
         }
-        //CLEAN!!!!
-        if(Input.GetKeyDown(KeyCode.Space)){
-            playerRigidbody.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
-        }
-    }
 
-        //  COLLECT COINS
+        //  COLLECT COINS + SCORE
 
-        private uint coins = 0; //store coin count
+        public uint coins = 0; //store coin count
         public Text coinsCollectedLabel; //text label for coin score
+
+        public float coinVal = 50;
 
         void collect(Collider2D coinCollider)
         {
@@ -117,6 +141,8 @@ public class Player : MonoBehaviour
             AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
 
             coinsCollectedLabel.text = coins.ToString();
+            Score.instance.scoreNum += coinVal;
+
             Destroy(coinCollider.gameObject);
         }
 

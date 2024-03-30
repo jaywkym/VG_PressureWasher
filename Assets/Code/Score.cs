@@ -8,14 +8,17 @@ namespace PressureWasher
     public class Score : MonoBehaviour
     {
         public static Score instance;
+
         public Transform player;
         public Text scoreText;
+
         public float scoreNum;
         public float pointsPerSec = 20;
 
-        private void Awake(){
-            instance = this;
 
+        private void Awake()
+        {
+            instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
 
@@ -23,7 +26,7 @@ namespace PressureWasher
         // Update is called once per frame
         void Update()
         {
-            scoreNum += pointsPerSec * Time.deltaTime;
+            scoreNum += (pointsPerSec * Time.deltaTime);
             //Debug.Log(pointsPerSec * Time.deltaTime);
             scoreText.text = "Score: " + scoreNum.ToString("0");
         }

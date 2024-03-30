@@ -5919,7 +5919,9 @@ MonoBehaviour:
   coinCollectSound: {fileID: 8300000, guid: cb53ab35f76ec43828d5b50e5c91ab06, type: 3}
   jetpackAudio: {fileID: 967008348}
   footstepsAudio: {fileID: 967008349}
+  coins: 0
   coinsCollectedLabel: {fileID: 1055826855}
+  coinVal: 100
 --- !u!114 &967008343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6254,7 +6256,7 @@ GameObject:
   - component: {fileID: 1016757083}
   - component: {fileID: 1016757085}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6333,7 +6335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839da5d95a3be46b9be379be9a5af90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 967008340}
+  player: {fileID: 0}
   scoreText: {fileID: 1016757083}
   scoreNum: 0
   pointsPerSec: 20

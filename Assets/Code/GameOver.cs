@@ -18,6 +18,8 @@ public class GameOver : MonoBehaviour
 
     public void getFinalScore(){
         scoreNumber = Mathf.RoundToInt(Score.instance.scoreNum);
+        //scoreNumber = Mathf.RoundToInt(Player.instance.playerScore);
+
         finalscore.text = scoreNumber.ToString();
     }
 
