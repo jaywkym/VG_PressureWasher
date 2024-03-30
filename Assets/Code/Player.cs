@@ -22,7 +22,21 @@ public class Player : MonoBehaviour
         public float maxObstacleDelay = 2f;
         public float minObstacleDelay = 0.5f;
 
-    void SpawnObstacle(){
+        public Transform groundCheckTransform;
+        private bool isGrounded;
+        public LayerMask groundCheckLayerMask;
+        private Animator mouseAnimator;
+
+        public ParticleSystem jetpack;
+        private bool isDead = false;
+        public AudioClip coinCollectSound;
+
+        public AudioSource jetpackAudio;
+        public AudioSource footstepsAudio;
+
+
+
+        void SpawnObstacle(){
         float spawnXPosition = transform.position.x + 18f;
         float spawnYPosition = Random.Range(-4.5f, 4.5f);
         Vector2 spawnPosition = new Vector2(spawnXPosition, spawnYPosition);
@@ -45,20 +59,34 @@ public class Player : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         StartCoroutine("ObstacleSpawnTimer");
-    }
+        mouseAnimator = GetComponent<Animator>();
+
+        }
         //need fixedupate with update bc they update at diff intervals
-    void FixedUpdate()
+        void FixedUpdate()
     {
             bool jetpackActive = Input.GetButton("Fire1");
+            jetpackActive = jetpackActive && !isDead;
+
             if (jetpackActive)
             {
                 playerRigidbody.AddForce(new Vector2(0, jetpackForce));
             }
-            Vector2 newVelocity = playerRigidbody.velocity;
-            newVelocity.x = fowardMovementSpeed;
-            playerRigidbody.velocity = newVelocity;
 
-    }
+            if (!isDead)
+            {
+                Vector2 newVelocity = playerRigidbody.velocity;
+                newVelocity.x = fowardMovementSpeed;
+                playerRigidbody.velocity = newVelocity;
+            }
+
+            UpdateGroundedStatus();
+            AdjustJetpack(jetpackActive);
+
+
+
+
+        }
 
         // Update is called once per frame
         void Update()
@@ -86,6 +114,8 @@ public class Player : MonoBehaviour
         void collect(Collider2D coinCollider)
         {
             coins++;
+            AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
+
             coinsCollectedLabel.text = coins.ToString();
             Destroy(coinCollider.gameObject);
         }
@@ -96,6 +126,48 @@ public class Player : MonoBehaviour
             if (collider.gameObject.CompareTag("coin"))
             {
                 collect(collider);
+            }
+            //HitByLaser(collider);
+        }
+
+        void UpdateGroundedStatus()
+        {
+            //1
+            isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.1f, groundCheckLayerMask);
+            //2
+            mouseAnimator.SetBool("isGrounded", isGrounded);
+        }
+
+        void AdjustJetpack(bool jetpackActive)
+        {
+            var jetpackEmission = jetpack.emission;
+            jetpackEmission.enabled = !isGrounded;
+            if (jetpackActive)
+            {
+                jetpackEmission.rateOverTime = 300.0f;
+            }
+            else
+            {
+                jetpackEmission.rateOverTime = 75.0f;
+            }
+        }
+
+        //void HitByLaser(Collider2D laserCollider)
+        //{
+        //    isDead = true;
+        //}
+
+        void AdjustFootstepsAndJetpackSound(bool jetpackActive)
+        {
+            footstepsAudio.enabled = !isDead && isGrounded;
+            jetpackAudio.enabled = !isDead && !isGrounded;
+            if (jetpackActive)
+            {
+                jetpackAudio.volume = 1.0f;
+            }
+            else
+            {
+                jetpackAudio.volume = 0.5f;
             }
         }
 
