@@ -5886,7 +5886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d26ef2cf8d5444ba52f637e1e2c70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jetpackForce: 75
+  jetpackForce: 60
   speed: 0
   playerScore: 0
   start: 0
