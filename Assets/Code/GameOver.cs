@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-namespace PressureWasher{
-public class GameOver : MonoBehaviour
+namespace PressureWasher
 {
+    public class GameOver : MonoBehaviour
+    {
         public TMP_Text finalscore;
         public int scoreNumber;
         public TMP_Text highScoreText;

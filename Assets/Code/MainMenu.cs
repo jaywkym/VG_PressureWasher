@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace PressureWasher{
-public class MainMenu : MonoBehaviour
-{
-    public void PlayGame()
+    public class MainMenu : MonoBehaviour
     {
-        SceneManager.LoadSceneAsync(1);
+        public void PlayGame()
+        {
+            SceneManager.LoadSceneAsync(1);
+        }
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-}
 }
 

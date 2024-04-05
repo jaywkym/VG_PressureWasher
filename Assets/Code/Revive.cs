@@ -2,26 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class Revive : MonoBehaviour
+namespace PressureWasher
 {
-    public GameObject reviveUI;
-    public GameObject player;
-
-    private bool revived;
-
-    public void YouWantToRevive()
+    public class Revive : MonoBehaviour
     {
-        if (revived)
+        public GameObject reviveUI;
+        public GameObject player;
+
+        private bool revived;
+
+        public void YouWantToRevive()
         {
-            SceneManager.LoadScene("GameOver");
-            reviveUI.SetActive(false);
-        }
-        else //if revived is false
-        {
-            reviveUI.SetActive(true);
+            if (revived)
+            {
+                SceneManager.LoadScene("GameOver");
+                reviveUI.SetActive(false);
+            }
+            else //if revived is false
+            {
+                reviveUI.SetActive(true);
+            }
         }
     }
-
-    
 }
