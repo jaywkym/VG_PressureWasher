@@ -8,40 +8,64 @@ using TMPro;
 namespace PressureWasher{
 public class GameOver : MonoBehaviour
 {
-    public TMP_Text finalscore;
-    public int scoreNumber;
+        public TMP_Text finalscore;
+        public int scoreNumber;
+        public TMP_Text highScoreText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+        public int highscore = 0;
 
-    public void getFinalScore(){
-        scoreNumber = Mathf.RoundToInt(Score.instance.scoreNum);
-        //scoreNumber = Mathf.RoundToInt(Player.instance.playerScore);
+        // Start is called before the first frame update
+        void Start()
+        {
+            highscore = PlayerPrefs.GetInt("highscore", 0);
+            UpdateHighscoreText();
+        }
 
-        finalscore.text = scoreNumber.ToString();
-    }
+        public void getFinalScore()
+        {
+            scoreNumber = Mathf.RoundToInt(Score.instance.scoreNum);
 
-    // Update is called once per frame
-    void Update()
-    {
-            //getFinalScore();
+            if (scoreNumber > highscore)
+            {
+                highscore = scoreNumber;
+                PlayerPrefs.SetInt("highscore", highscore);
+                UpdateHighscoreText();
+            }
+
+            finalscore.text = scoreNumber.ToString();
+        }
+
+        void UpdateHighscoreText()
+        {
+            highScoreText.text = "Your Highscore: " + highscore.ToString();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
             if (finalscore != null)
             {
                 getFinalScore();
             }
         }
 
-    public void LoadGame()
-    {
-        SceneManager.LoadScene("Level 1");
-    }
+        public void LoadGame()
+        {
+            SceneManager.LoadScene("Level 1");
+        }
 
-    public void MainMenu()
-    {
-        SceneManager.LoadScene("StartGameScene");
+        public void MainMenu()
+        {
+            SceneManager.LoadScene("StartGameScene");
+        }
+
+        // Method to reset highscore
+        public void ResetHighscore()
+        {
+            highscore = 0;
+            PlayerPrefs.SetInt("highscore", highscore);
+            UpdateHighscoreText();
+        }
     }
-}
 }
 
