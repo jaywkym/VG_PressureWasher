@@ -138,6 +138,11 @@ public class Player : MonoBehaviour
         void collect(Collider2D coinCollider)
         {
             coins++;
+            if (coins >= 30)
+            {
+                // Show revive button
+                //GameOver.instance.ShowReviveButton();
+            }
             AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
 
             coinsCollectedLabel.text = coins.ToString();

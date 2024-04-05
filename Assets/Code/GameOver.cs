@@ -10,18 +10,32 @@ public class GameOver : MonoBehaviour
 {
     public TMP_Text finalscore;
     public int scoreNumber;
+    public TMP_Text highScoreText;
+
+    public int highscore = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+            highscore = PlayerPrefs.GetInt("highscore", 0);
     }
 
     public void getFinalScore(){
-        scoreNumber = Mathf.RoundToInt(Score.instance.scoreNum);
-        //scoreNumber = Mathf.RoundToInt(Player.instance.playerScore);
+            scoreNumber = Mathf.RoundToInt(Score.instance.scoreNum);
 
-        finalscore.text = scoreNumber.ToString();
-    }
+            if (scoreNumber > highscore)
+            {
+                highscore = scoreNumber; // Update the highscore
+                PlayerPrefs.SetInt("highscore", highscore);
+                highScoreText.text = "Your Highscore: " + highscore.ToString(); // Update highscore text immediately
+            }
+            else
+            {
+                highScoreText.text = "Your Highscore: " + highscore.ToString(); // Keep the current highscore text
+            }
+
+            finalscore.text = scoreNumber.ToString();
+        }
 
     // Update is called once per frame
     void Update()
@@ -31,6 +45,8 @@ public class GameOver : MonoBehaviour
             {
                 getFinalScore();
             }
+
+
         }
 
     public void LoadGame()
