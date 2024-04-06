@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace PressureWasher{
     public class Player : MonoBehaviour
@@ -166,10 +167,12 @@ namespace PressureWasher{
             }
         }
 
-        //void HitByLaser(Collider2D laserCollider)
-        //{
-        //    isDead = true;
-        //}
+        void HitByLaser(Collider2D laserCollider)
+        {
+            isDead = true;
+            mouseAnimator.SetBool("isDead", true);
+            SceneManager.LoadScene("GameOver"); //load game over screen
+        }
 
         void AdjustFootstepsAndJetpackSound(bool jetpackActive)
         {

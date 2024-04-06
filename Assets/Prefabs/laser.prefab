@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8165289885129983106}
   - component: {fileID: 2010636558049078371}
   - component: {fileID: 14683610734532986}
-  - component: {fileID: -8879054119077100552}
   m_Layer: 0
   m_Name: laser
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7477965606727298079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.38, y: -0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,15 +147,3 @@ MonoBehaviour:
   laserOffSprite: {fileID: 21300000, guid: ce22052cc472c4444b8d072136b7a7c4, type: 3}
   toggleInterval: 0.5
   rotationSpeed: 30
---- !u!114 &-8879054119077100552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7477965606727298079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24cb543a8a1784428aa8d9e8d3077356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

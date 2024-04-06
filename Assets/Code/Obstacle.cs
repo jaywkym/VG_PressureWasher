@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 namespace PressureWasher{
     public class Obstacle : MonoBehaviour
     {
+
+
         void OnCollisionEnter2D(Collision2D other)
         {
             //Reload only when colliding with player
@@ -15,6 +17,7 @@ namespace PressureWasher{
                 SceneManager.LoadScene("GameOver"); //load game over screen
             }
         }
+
 
     }
 }
