@@ -12,13 +12,15 @@ namespace PressureWasher
         public TMP_Text finalscore;
         public int scoreNumber;
         public TMP_Text highScoreText;
-
+        public TMP_Text coinScoreText;
+        public float coinScore = 0;
         public int highscore = 0;
 
         // Start is called before the first frame update
         void Start()
         {
             highscore = PlayerPrefs.GetInt("highscore", 0);
+            coinScore = PlayerPrefs.GetInt("coins", 0);
             UpdateHighscoreText();
         }
 
@@ -26,13 +28,16 @@ namespace PressureWasher
         {
             scoreNumber = Mathf.RoundToInt(Score.instance.scoreNum);
 
+            coinScore = Mathf.RoundToInt(Score.instance.coinsCollected * 50);
+
             if (scoreNumber > highscore)
             {
                 highscore = scoreNumber;
                 PlayerPrefs.SetInt("highscore", highscore);
                 UpdateHighscoreText();
             }
-
+            
+            coinScoreText.text = "Coin Score: " + coinScore.ToString();
             finalscore.text = scoreNumber.ToString();
         }
 

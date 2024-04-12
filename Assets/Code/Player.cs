@@ -10,7 +10,7 @@ namespace PressureWasher{
         public static Player instance;
 
         // Start is called before the first frame update
-        public float jetpackForce = 50.0f;
+        public float jetpackForce = 40.0f;
         private Rigidbody2D playerRigidbody;
         public float speed;
 
@@ -18,9 +18,11 @@ namespace PressureWasher{
         //public Text scoreText;
         //public float pointsPerSec = 20;
 
+        //MOVEMENT
         public float start;
         public float fowardMovementSpeed = 3.0f;
 
+        //OBSTACLE GENERATION
         public Transform[] spawnPoints;
         public GameObject[] obstaclePrefabs;
         public float timeElapsed;
@@ -29,13 +31,18 @@ namespace PressureWasher{
         public float maxObstacleDelay = 2f;
         public float minObstacleDelay = 0.5f;
 
+        //GROUND CHECK
         public Transform groundCheckTransform;
         private bool isGrounded;
         public LayerMask groundCheckLayerMask;
         private Animator mouseAnimator;
 
+        //JETPACK AND LIFE
         public ParticleSystem jetpack;
         private bool isDead = false;
+
+        //MENU CONTROLLER
+        public bool isPaused = false;
 
         // Audio clips
         public AudioClip coinCollectSound;
@@ -97,6 +104,10 @@ namespace PressureWasher{
         // Update is called once per frame
         void Update()
         {
+            if(isPaused){
+                return;
+            }
+
             timeElapsed += Time.deltaTime;
             float decreaseDelayOverTime = maxObstacleDelay - ((maxObstacleDelay - minObstacleDelay) / 30f * timeElapsed);
             obstacleDelay = Mathf.Clamp(decreaseDelayOverTime, minObstacleDelay, maxObstacleDelay);
@@ -111,6 +122,7 @@ namespace PressureWasher{
             {
                 playerRigidbody.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
             }
+
         }
 
         //  COLLECT COINS + SCORE
@@ -119,6 +131,7 @@ namespace PressureWasher{
         public Text coinsCollectedLabel; //text label for coin score
 
         public float coinVal = 50;
+
 
         void collect(Collider2D coinCollider)
         {
@@ -131,6 +144,7 @@ namespace PressureWasher{
             AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
 
             coinsCollectedLabel.text = coins.ToString();
+            Score.instance.coinsCollected = coins;
             Score.instance.scoreNum += coinVal;
             Destroy(coinCollider.gameObject);
         }
