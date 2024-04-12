@@ -14,6 +14,7 @@ namespace PressureWasher
 
         public float scoreNum;
         public float pointsPerSec = 20;
+        public uint coinsCollected;
 
 
         private void Awake()
