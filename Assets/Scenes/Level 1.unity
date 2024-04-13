@@ -6156,7 +6156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jetpackForce: 60
   speed: 0
-  playerScore: 0
   start: 0
   fowardMovementSpeed: 3
   spawnPoints:
@@ -6191,7 +6190,7 @@ MonoBehaviour:
   footstepsAudio: {fileID: 967008349}
   coins: 0
   coinsCollectedLabel: {fileID: 1055826855}
-  coinVal: 100
+  coinVal: 50
 --- !u!114 &967008343
 MonoBehaviour:
   m_ObjectHideFlags: 0
