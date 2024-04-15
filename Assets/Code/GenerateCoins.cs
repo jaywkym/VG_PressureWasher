@@ -20,6 +20,9 @@ namespace PressureWasher{
 
         private float screenWidthInPoints;
 
+        // Adding list to track coin positions
+        public static List<Vector3> activeCoinPositions = new List<Vector3>();
+
 
         void AddObject(float lastObjectX)
         {
@@ -36,6 +39,9 @@ namespace PressureWasher{
             obj.transform.rotation = Quaternion.Euler(Vector3.forward * rotation);
             //5
             objects.Add(obj);
+
+            // Track Coin position
+            activeCoinPositions.Add(obj.transform.position);
         }
 
         void GenerateObjectsIfRequired()

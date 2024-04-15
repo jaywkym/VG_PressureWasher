@@ -26,8 +26,8 @@ namespace PressureWasher{
         public float timeElapsed;
         public float obstacleDelay;
 
-        public float maxObstacleDelay = 2f;
-        public float minObstacleDelay = 0.5f;
+        public float maxObstacleDelay = 2.0f;
+        public float minObstacleDelay = 0.7f;
 
         //GROUND CHECK
         public Transform groundCheckTransform;
@@ -47,12 +47,18 @@ namespace PressureWasher{
         public AudioSource jetpackAudio;
         public AudioSource footstepsAudio;
 
+        //OBSTACLE GENERATION
         void SpawnObstacle()
         {
             float spawnXPosition = transform.position.x + 18f;
             float spawnYPosition = Random.Range(-4.5f, 4.5f);
             Vector2 spawnPosition = new Vector2(spawnXPosition, spawnYPosition);
 
+            foreach (Vector3 coinPosition in GenerateCoins.activeCoinPositions)
+            {
+            if (Vector2.Distance(spawnPosition, coinPosition) < 2.75f) // Assuming 1.0f as minimum non-colliding distance
+                return; // Skip spawning if too close to a coin
+            }
             int randomObstacleIndex = Random.Range(0, obstaclePrefabs.Length);
             GameObject randomObstaclePrefabs = obstaclePrefabs[randomObstacleIndex];
 
@@ -66,6 +72,7 @@ namespace PressureWasher{
             StartCoroutine("ObstacleSpawnTimer");
         }
 
+        //OBSTACLE SPAWN
         void Start()
         {
             instance = this;
@@ -150,6 +157,8 @@ namespace PressureWasher{
             mouseAnimator.SetBool("isGrounded", isGrounded);
         }
 
+        //JETPACK ADJUST
+
         void AdjustJetpack(bool jetpackActive)
         {
             var jetpackEmission = jetpack.emission;
@@ -163,6 +172,7 @@ namespace PressureWasher{
                 jetpackEmission.rateOverTime = 75.0f;
             }
         }
+
 
         void HitByLaser(Collider2D laserCollider)
         {
