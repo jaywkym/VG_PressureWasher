@@ -6205,10 +6205,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableObjects:
-  - {fileID: 2570909089470268611, guid: a09d6609a32ff4015bfddc397a39f495, type: 3}
+  - {fileID: 8315868191245607739, guid: aa069c157963442df80fe1a7462c75fe, type: 3}
   - {fileID: 4874469401574153006, guid: 00dbb57bf379e45fe8c62b03c7daf5a5, type: 3}
   - {fileID: 5874366765613505841, guid: 7cb31efb233594817a28787410266191, type: 3}
   - {fileID: 4371683623268489597, guid: 1776ada8677c54471834f8d86cf36506, type: 3}
+  - {fileID: 4874469401574153006, guid: 00dbb57bf379e45fe8c62b03c7daf5a5, type: 3}
   objects: []
   objectsMinDistance: 5
   objectsMaxDistance: 10
