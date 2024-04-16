@@ -8,6 +8,7 @@ namespace PressureWasher{
     public class Player : MonoBehaviour
     {
         public static Player instance;
+        public GameObject consumePrefab;
 
         // Start is called before the first frame update
         public float jetpackForce = 40.0f;
@@ -56,7 +57,7 @@ namespace PressureWasher{
 
             foreach (Vector3 coinPosition in GenerateCoins.activeCoinPositions)
             {
-            if (Vector2.Distance(spawnPosition, coinPosition) < 2.75f) // Assuming 1.0f as minimum non-colliding distance
+            if (Vector2.Distance(spawnPosition, coinPosition) < 3.0f) // Assuming 1.0f as minimum non-colliding distance
                 return; // Skip spawning if too close to a coin
             }
             int randomObstacleIndex = Random.Range(0, obstaclePrefabs.Length);
@@ -146,6 +147,10 @@ namespace PressureWasher{
             if (collider.gameObject.CompareTag("coin"))
             {
                 collect(collider);
+                GameObject consume = Instantiate(
+                Player.instance.consumePrefab, collider.transform.position, Quaternion.identity
+                );
+                Destroy(consume, 0.75f);
             }
         }
 
