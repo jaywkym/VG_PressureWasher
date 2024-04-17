@@ -19,7 +19,8 @@ namespace PressureWasher{
         //REVIVAL
         public GameObject revivePanel;
         public uint coinsRequiredForRevive = 30;
-        public GameObject notEnoughCoinsText; 
+        public GameObject notEnoughCoinsText;
+        public bool revived = false; // Track if the player has been revived once
 
         //MOVEMENT
         public float start;
@@ -211,7 +212,8 @@ namespace PressureWasher{
                 currentPosition.x += 2.5f;
                 transform.position = currentPosition;
 
-                // Reset any other necessary player state (e.g., velocity, animations, etc.)
+                // Set revived flag to true
+                revived = true;
 
                 // Hide the revive panel
                 if (revivePanel != null)

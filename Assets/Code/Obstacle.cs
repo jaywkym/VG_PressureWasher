@@ -16,11 +16,21 @@ namespace PressureWasher{
                 // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 //SceneManager.LoadScene("GameOver"); //load game over screen
 
-                // Activate the revive panel instead of directly loading the Game Over scene
-                Player.instance.isPaused = true;
-                Time.timeScale = 0;
-                Player.instance.revivePanel.SetActive(true);
-                Player.instance.notEnoughCoinsText.SetActive(false);
+                if (Player.instance.revived)
+                {
+                    // Load game over scene directly
+                    SceneManager.LoadScene("GameOver");
+                }
+                else
+                {
+                    // Activate the revive panel instead of directly loading the Game Over scene
+                    Player.instance.isPaused = true;
+                    Time.timeScale = 0;
+                    Player.instance.revivePanel.SetActive(true);
+                    Player.instance.notEnoughCoinsText.SetActive(false);
+                }
+
+               
             }
         }
 

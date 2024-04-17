@@ -6910,6 +6910,7 @@ MonoBehaviour:
   revivePanel: {fileID: 925944515}
   coinsRequiredForRevive: 25
   notEnoughCoinsText: {fileID: 847631757}
+  revived: 0
   start: 0
   fowardMovementSpeed: 3
   keySpace: 32
