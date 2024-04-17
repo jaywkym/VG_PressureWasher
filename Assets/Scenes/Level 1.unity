@@ -6159,6 +6159,7 @@ MonoBehaviour:
   speed: 0
   start: 0
   fowardMovementSpeed: 3
+  keySpace: 32
   spawnPoints:
   - {fileID: 127536546}
   - {fileID: 1923820480}

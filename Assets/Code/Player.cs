@@ -11,15 +11,16 @@ namespace PressureWasher{
         public GameObject consumePrefab;
 
         // Start is called before the first frame update
-        public float jetpackForce = 40.0f;
-        private Rigidbody2D playerRigidbody;
-        public float speed;
+        float jetpackForce = 40.0f;
+        Rigidbody2D playerRigidbody;
 
         //public float playerScore;
 
         //MOVEMENT
         public float start;
         public float fowardMovementSpeed = 3.0f;
+        public KeyCode keySpace;
+
 
         //OBSTACLE GENERATION
         public Transform[] spawnPoints;
@@ -83,10 +84,11 @@ namespace PressureWasher{
             StartCoroutine("ObstacleSpawnTimer");
             mouseAnimator = GetComponent<Animator>();
         }
+
         //need fixedupate with update bc they update at diff intervals
         void FixedUpdate()
         {
-            bool jetpackActive = Input.GetButton("Fire1");
+            bool jetpackActive = Input.GetKey(keySpace);
             jetpackActive = jetpackActive && !isDead;
             if (jetpackActive)
             {
@@ -114,11 +116,6 @@ namespace PressureWasher{
             float decreaseDelayOverTime = maxObstacleDelay - ((maxObstacleDelay - minObstacleDelay) / 30f * timeElapsed);
             obstacleDelay = Mathf.Clamp(decreaseDelayOverTime, minObstacleDelay, maxObstacleDelay);
 
-            //CLEAN!!!!
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playerRigidbody.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
-            }
         }
 
         //  COLLECT COINS + SCORE
