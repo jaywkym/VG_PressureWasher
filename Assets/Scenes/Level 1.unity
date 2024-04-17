@@ -5909,7 +5909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit Game
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80edc2e7514264b0dbfe5711fae68dca, type: 2}
   m_sharedMaterial: {fileID: 5860054417658600362, guid: 80edc2e7514264b0dbfe5711fae68dca, type: 2}
@@ -7508,8 +7508,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1643339921}
-  - {fileID: 505685041}
   - {fileID: 2053358983}
+  - {fileID: 505685041}
   m_Father: {fileID: 1425834351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
