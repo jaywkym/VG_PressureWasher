@@ -16,6 +16,10 @@ namespace PressureWasher{
 
         //public float playerScore;
 
+        //REVIVAL
+        public GameObject revivePanel;
+        public uint coinsRequiredForRevive = 30;
+
         //MOVEMENT
         public float start;
         public float fowardMovementSpeed = 3.0f;
@@ -85,6 +89,8 @@ namespace PressureWasher{
             playerRigidbody = GetComponent<Rigidbody2D>();
             StartCoroutine("ObstacleSpawnTimer");
             mouseAnimator = GetComponent<Animator>();
+
+            revivePanel.SetActive(false);
         }
 
         //need fixedupate with update bc they update at diff intervals
@@ -181,6 +187,67 @@ namespace PressureWasher{
             {
                 jetpackEmission.rateOverTime = 75.0f;
             }
+        }
+
+        //REVIVAL
+        public void Revive()
+        {
+            if (coins >= coinsRequiredForRevive)
+            {
+
+                Time.timeScale = 1;
+                if (Player.instance != null)
+                {
+                    Player.instance.isPaused = false;
+                }
+
+                // Deduct coins for revival
+                coins -= coinsRequiredForRevive;
+                coinsCollectedLabel.text = coins.ToString(); // Update UI
+
+                // Move the player forward by 20 units on the x-axis while keeping the y position unchanged
+                Vector3 currentPosition = transform.position;
+                currentPosition.x += 2.5f;
+                transform.position = currentPosition;
+
+                // Reset any other necessary player state (e.g., velocity, animations, etc.)
+
+                // Hide the revive panel
+                if (revivePanel != null)
+                {
+                    revivePanel.SetActive(false);
+                }
+            }
+            else
+            {
+                // Display "Not Enough Coins" message in the revive panel
+                if (revivePanel != null)
+                {
+                    Text revivePanelText = revivePanel.GetComponentInChildren<Text>();
+                    if (revivePanelText != null)
+                    {
+                        revivePanelText.text = "Not Enough Coins";
+                    }
+                    // Grey out the "Yes" button and make it non-interactable
+                    Button yesButton = revivePanel.GetComponentInChildren<Button>();
+                    if (yesButton != null)
+                    {
+                        yesButton.interactable = false;
+                    }
+                    // Activate the revive panel
+                    revivePanel.SetActive(true);
+                }
+            }
+
+            // Pause or unpause the game based on whether the revive panel is active
+            Time.timeScale = revivePanel.activeSelf ? 0 : 1;
+            Player.instance.isPaused = revivePanel.activeSelf;
+        }
+
+
+        public void LoadGameOverScene()
+        {
+            SceneManager.LoadScene("GameOver");
         }
 
 

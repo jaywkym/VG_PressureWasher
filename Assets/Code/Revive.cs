@@ -9,7 +9,14 @@ namespace PressureWasher
         public GameObject reviveUI;
         public GameObject player;
 
+        public static Revive instance;
+
         private bool revived;
+
+        void Awake()
+        {
+            instance = this; 
+        }
 
         public void YouWantToRevive()
         {
