@@ -20,6 +20,8 @@ namespace PressureWasher{
         public float start;
         public float fowardMovementSpeed = 3.0f;
         public KeyCode keySpace;
+        public KeyCode keyEsc;
+
 
 
         //OBSTACLE GENERATION
@@ -89,6 +91,7 @@ namespace PressureWasher{
         void FixedUpdate()
         {
             bool jetpackActive = Input.GetKey(keySpace);
+             
             jetpackActive = jetpackActive && !isDead;
             if (jetpackActive)
             {
@@ -108,7 +111,12 @@ namespace PressureWasher{
         // Update is called once per frame
         void Update()
         {
-            if(isPaused){
+            if (Input.GetKeyDown(keyEsc))
+            {
+                MenuController.instance.Show();
+            }
+
+            if (isPaused){
                 return;
             }
 

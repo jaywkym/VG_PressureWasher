@@ -5411,7 +5411,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1425834354}
         m_TargetAssemblyTypeName: PressureWasher.MenuController, Assembly-CSharp
-        m_MethodName: Play
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6155,11 +6155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumePrefab: {fileID: 4531542389975360786, guid: 3d1ac3c92847a48ac92872c5b5bc93cd, type: 3}
-  jetpackForce: 60
-  speed: 0
   start: 0
   fowardMovementSpeed: 3
   keySpace: 32
+  keyEsc: 27
   spawnPoints:
   - {fileID: 127536546}
   - {fileID: 1923820480}
@@ -7723,7 +7722,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1425834354}
         m_TargetAssemblyTypeName: PressureWasher.MenuController, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
