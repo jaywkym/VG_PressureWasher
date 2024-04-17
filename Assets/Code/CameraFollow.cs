@@ -6,23 +6,26 @@ namespace PressureWasher
 {
     public class CameraFollow : MonoBehaviour
     {
-        public GameObject targetObject;
+        public GameObject[] targetObject;
         private float distanceToTarget;
+        
+
 
         // Start is called before the first frame update
-        void Start()
+        public void Start()
         {
-            distanceToTarget = transform.position.x - targetObject.transform.position.x;
+            int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
+            distanceToTarget = transform.position.x - targetObject[selectedCharacter].transform.position.x;
         }
 
         // Update is called once per frame
-        void Update()
+        public void Update()
         {
-            float targetObjectX = targetObject.transform.position.x;
+            int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
+            float targetObjectX = targetObject[selectedCharacter].transform.position.x;
             Vector3 newCameraPosition = transform.position;
             newCameraPosition.x = targetObjectX + distanceToTarget;
             transform.position = newCameraPosition;
         }
     }
 }
-
