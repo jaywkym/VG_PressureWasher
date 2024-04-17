@@ -20,6 +20,7 @@ namespace PressureWasher{
                 Player.instance.isPaused = true;
                 Time.timeScale = 0;
                 Player.instance.revivePanel.SetActive(true);
+                Player.instance.notEnoughCoinsText.SetActive(false);
             }
         }
 

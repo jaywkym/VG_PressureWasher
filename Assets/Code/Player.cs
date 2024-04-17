@@ -19,6 +19,7 @@ namespace PressureWasher{
         //REVIVAL
         public GameObject revivePanel;
         public uint coinsRequiredForRevive = 30;
+        public GameObject notEnoughCoinsText; 
 
         //MOVEMENT
         public float start;
@@ -194,7 +195,7 @@ namespace PressureWasher{
         {
             if (coins >= coinsRequiredForRevive)
             {
-
+                //unpause the game
                 Time.timeScale = 1;
                 if (Player.instance != null)
                 {
@@ -218,7 +219,7 @@ namespace PressureWasher{
                     revivePanel.SetActive(false);
                 }
             }
-            else
+            else //if not enough coins
             {
                 // Display "Not Enough Coins" message in the revive panel
                 if (revivePanel != null)
@@ -228,12 +229,15 @@ namespace PressureWasher{
                     {
                         revivePanelText.text = "Not Enough Coins";
                     }
+
                     // Grey out the "Yes" button and make it non-interactable
                     Button yesButton = revivePanel.GetComponentInChildren<Button>();
                     if (yesButton != null)
                     {
                         yesButton.interactable = false;
+                        notEnoughCoinsText.SetActive(true);
                     }
+                    
                     // Activate the revive panel
                     revivePanel.SetActive(true);
                 }
