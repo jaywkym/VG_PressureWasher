@@ -32,7 +32,7 @@ namespace PressureWasher
         {
             mainMenu.SetActive(true);
             gameObject.SetActive(true);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             Player.instance.isPaused = true;
         }
 
@@ -50,7 +50,7 @@ namespace PressureWasher
         // Start is called before the first frame update
         void Start()
         {
-
+            Time.timeScale = 1f;
         }
 
         // Update is called once per frame
