@@ -5814,7 +5814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (25 coins)
+  m_text: (30 coins)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80edc2e7514264b0dbfe5711fae68dca, type: 2}
   m_sharedMaterial: {fileID: 5860054417658600362, guid: 80edc2e7514264b0dbfe5711fae68dca, type: 2}
@@ -6908,7 +6908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumePrefab: {fileID: 4531542389975360786, guid: 3d1ac3c92847a48ac92872c5b5bc93cd, type: 3}
   revivePanel: {fileID: 925944515}
-  coinsRequiredForRevive: 25
+  coinsRequiredForRevive: 30
   notEnoughCoinsText: {fileID: 847631757}
   revived: 0
   start: 0
