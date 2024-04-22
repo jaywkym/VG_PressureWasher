@@ -19,6 +19,7 @@ namespace PressureWasher
         // Start is called before the first frame update
         void Start()
         {
+
             highscore = PlayerPrefs.GetInt("highscore", 0);
             coinScore = PlayerPrefs.GetInt("coins", 0);
             UpdateHighscoreText();
@@ -55,9 +56,11 @@ namespace PressureWasher
             }
         }
 
-        public void LoadGame()
+        public void LoadGame(int levelId)
         {
-            SceneManager.LoadScene("Level 1");
+            string levelName = "Level " + levelId;
+            SceneManager.LoadScene(levelName);
+            //SceneManager.LoadScene("Level 1");
         }
 
         public void MainMenu()
