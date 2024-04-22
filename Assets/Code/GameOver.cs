@@ -56,10 +56,13 @@ namespace PressureWasher
             }
         }
 
-        public void LoadGame(int levelId)
+        public void LoadGame()
         {
-            string levelName = "Level " + levelId;
-            SceneManager.LoadScene(levelName);
+            Time.timeScale = 1f;
+            int selectedBackground = PlayerPrefs.GetInt("selectedBackground");
+            SceneManager.LoadScene(selectedBackground);
+            //string levelName = "Level " + levelId;
+            //SceneManager.LoadScene(levelName);
             //SceneManager.LoadScene("Level 1");
         }
 

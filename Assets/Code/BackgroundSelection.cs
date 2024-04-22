@@ -26,6 +26,11 @@ public class BackgroundSelection : MonoBehaviour
         backgrounds[selectedBackground].SetActive(true);
     }
 
+    public void Update()
+    {
+        PlayerPrefs.SetInt("selectedBackground", selectedBackground);
+        //SceneManager.LoadScene(selectedBackground);
+    }
     //public void StartGame()
     //{
     //    if(selectedBackground == 1)
