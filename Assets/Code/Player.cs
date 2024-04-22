@@ -85,6 +85,7 @@ namespace PressureWasher{
         //OBSTACLE SPAWN
         void Start()
         {
+            Time.timeScale = 1f;
             instance = this;
             //DontDestroyOnLoad(this.gameObject);
 
