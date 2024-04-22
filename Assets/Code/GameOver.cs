@@ -19,7 +19,7 @@ namespace PressureWasher
         // Start is called before the first frame update
         void Start()
         {
-
+            Time.timeScale = 1f;
             highscore = PlayerPrefs.GetInt("highscore", 0);
             coinScore = PlayerPrefs.GetInt("coins", 0);
             UpdateHighscoreText();
